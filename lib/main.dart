@@ -115,9 +115,8 @@ class _MyHomePageState extends State<MyHomePage> {
             ElevatedButton(
               onPressed: () {
                 Navigator.of(context).push(
-                  PageTransition(
-                    type: PageTransitionType.slideInRight,
-                    child: DetailPage(),
+                  MaterialPageRoute(
+                    builder: (context) => const Page2(),
                   ),
                 );
               },
