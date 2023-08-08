@@ -1,7 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api
 
-import 'dart:ffi';
 
+import 'package:example_app/views/FadeWidget.dart';
 import 'package:example_app/views/animation.dart';
 import 'package:example_app/views/container.dart';
 import 'package:example_app/views/logo-animation.dart';
@@ -140,6 +140,11 @@ class Demo extends StatelessWidget {
                 },
                 child: const Text('Next Page Container'),
               ),
+              ElevatedButton(
+                onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const FadeWidget()));
+              },
+              child: const Text('Next Page Fade Widget')),
             ],
           ),
       ),
