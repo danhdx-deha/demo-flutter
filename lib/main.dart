@@ -3,6 +3,7 @@
 import 'dart:ffi';
 
 import 'package:example_app/views/animation.dart';
+import 'package:example_app/views/container.dart';
 import 'package:example_app/views/logo-animation.dart';
 import 'package:flutter/material.dart';
 
@@ -129,6 +130,15 @@ class Demo extends StatelessWidget {
                   );
                 },
                 child: const Text('Next Page Logo Animation'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ContainerDemo()),
+                  );
+                },
+                child: const Text('Next Page Container'),
               ),
             ],
           ),
