@@ -7,6 +7,8 @@ import 'package:example_app/views/container.dart';
 import 'package:example_app/views/logo-animation.dart';
 import 'package:flutter/material.dart';
 
+import 'views/PageDrawer.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -144,7 +146,17 @@ class Demo extends StatelessWidget {
                 onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => const FadeWidget()));
               },
-              child: const Text('Next Page Fade Widget')),
+              child: const Text('Next Page Fade Widget')
+              ),
+              ElevatedButton(
+                onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const PageDrawer())
+                );
+              },
+              child: const Text('Next Page Drawer')
+              ),
             ],
           ),
       ),

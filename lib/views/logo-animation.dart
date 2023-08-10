@@ -1,5 +1,5 @@
+// ignore: file_names
 import 'package:flutter/material.dart';
-import 'dart:ffi';
 
 class LogoAnimation extends StatelessWidget {
   const LogoAnimation({super.key});
