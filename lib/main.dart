@@ -6,6 +6,7 @@ import 'package:example_app/views/container.dart';
 import 'package:example_app/views/logo-animation.dart';
 import 'package:example_app/views/orientation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'views/PageDrawer.dart';
 
 void main() {
@@ -176,10 +177,19 @@ class Demo extends StatelessWidget {
                   action: SnackBarAction(label: 'label', onPressed: () {}),
                 ));
               },
-              child: const Text('Next Page Fade Widget')),
+              child: Text('Font size', style: GoogleFonts.timmana())
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) => const OrientationCustom()
+                  ));
+                },
+                child: const Text('Update the UI based on orientation')
+            )
             ],
-          ),
-      ),
+        );
+      }
     );
   }
 }
