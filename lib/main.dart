@@ -6,7 +6,7 @@ import 'package:example_app/views/container.dart';
 import 'package:example_app/views/logo-animation.dart';
 import 'package:example_app/views/orientation.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'views/PageDrawer.dart';
 
 void main() {
   runApp(const MyApp());
@@ -150,7 +150,17 @@ class Demo extends StatelessWidget {
                       MaterialPageRoute(
                           builder: (context) => const FadeWidget()));
                 },
-                child: const Text('Next Page Fade Widget')),
+                child: const Text('Next Page Fade Widget')
+            ),
+            ElevatedButton(
+                onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const PageDrawer())
+                );
+              },
+              child: const Text('Next Page Drawer')
+            ),   
             ElevatedButton(
               onPressed: () {
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -166,21 +176,10 @@ class Demo extends StatelessWidget {
                   action: SnackBarAction(label: 'label', onPressed: () {}),
                 ));
               },
-              child: Text(
-                'This is Google Fonts',
-                style: GoogleFonts.andadaPro(),
-              ),
-            ),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (context) => const OrientationCustom()
-                  ));
-                },
-                child: const Text('Update the UI based on orientation'))
-          ],
-        );
-      }
+              child: const Text('Next Page Fade Widget')),
+            ],
+          ),
+      ),
     );
   }
 }
