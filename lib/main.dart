@@ -1,11 +1,12 @@
 // ignore_for_file: library_private_types_in_public_api
 
-
 import 'package:example_app/views/FadeWidget.dart';
 import 'package:example_app/views/animation.dart';
 import 'package:example_app/views/container.dart';
 import 'package:example_app/views/logo-animation.dart';
+import 'package:example_app/views/orientation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -56,10 +57,9 @@ class _MyHomePageState extends State<MyHomePage> {
         );
       case 1:
         return Container(
-          color: Colors.green,
-          alignment: Alignment.center,
-          child: const FootballTournament()
-        );
+            color: Colors.green,
+            alignment: Alignment.center,
+            child: const FootballTournament());
       case 2:
         return Container(
           color: Colors.blue,
@@ -108,46 +108,79 @@ class Demo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              ElevatedButton(
+    return OrientationBuilder(
+      builder: (context, orientation) {
+        return GridView.count(
+          crossAxisCount: orientation == Orientation.portrait ? 3 : 4,
+          children: <Widget>[
+            ElevatedButton(
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const AnimationDemo()),
+                    MaterialPageRoute(
+                        builder: (context) => const AnimationDemo()),
                   );
                 },
                 child: const Text('Next Page Animation'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const LogoAnimation()),
-                  );
-                },
-                child: const Text('Next Page Logo Animation'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const ContainerDemo()),
-                  );
-                },
-                child: const Text('Next Page Container'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const FadeWidget()));
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const LogoAnimation()),
+                );
               },
-              child: const Text('Next Page Fade Widget')),
-            ],
-          ),
-      ),
+              child: const Text('Next Page Logo Animation'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ContainerDemo()),
+                );
+              },
+              child: const Text('Next Page Container'),
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const FadeWidget()));
+                },
+                child: const Text('Next Page Fade Widget')),
+            ElevatedButton(
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: const Text('Yay! A SnackBar!'),
+                  duration: const Duration(minutes: 1),
+                  width: 180.0,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8.0, // Inner padding for SnackBar content.
+                  ),
+                  behavior: SnackBarBehavior.floating,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0)),
+                  action: SnackBarAction(label: 'label', onPressed: () {}),
+                ));
+              },
+              child: Text(
+                'This is Google Fonts',
+                style: GoogleFonts.andadaPro(),
+              ),
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) => const OrientationCustom()
+                  ));
+                },
+                child: const Text('Update the UI based on orientation'))
+          ],
+        );
+      }
     );
   }
 }
@@ -159,57 +192,44 @@ class FootballTournament extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: ListView(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: 16.0,
-                  top:16.0,
-                  right:16.0,
-                  bottom: 0.0
-                ),
-              child: Card(
-                child: ListTile(
-                  leading: Image.asset('assets/1.png'),
-                  title: const Text('Item 1'),
-                  trailing: const Icon(Icons.navigate_next),
-                ),
+          child: ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(
+                left: 16.0, top: 16.0, right: 16.0, bottom: 0.0),
+            child: Card(
+              child: ListTile(
+                leading: Image.asset('assets/1.png'),
+                title: const Text('Item 1'),
+                trailing: const Icon(Icons.navigate_next),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: 16.0,
-                  top:16.0,
-                  right:16.0,
-                  bottom: 0.0
-                ),
-              child: Card(
-                child: ListTile(
-                  leading: Image.asset('assets/2.png'),
-                  title: const Text('Item 2r'),
-                  trailing: const Icon(Icons.navigate_next),
-                ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+                left: 16.0, top: 16.0, right: 16.0, bottom: 0.0),
+            child: Card(
+              child: ListTile(
+                leading: Image.asset('assets/2.png'),
+                title: const Text('Item 2r'),
+                trailing: const Icon(Icons.navigate_next),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: 16.0,
-                  top:16.0,
-                  right:16.0,
-                  bottom: 0.0
-                ),
-              child: Card(
-                borderOnForeground: true,
-                child: ListTile(
-                  leading: Image.asset('assets/3.png'),
-                  title: const Text('Item 3'),
-                  trailing: const Icon(Icons.navigate_next),
-                ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+                left: 16.0, top: 16.0, right: 16.0, bottom: 0.0),
+            child: Card(
+              borderOnForeground: true,
+              child: ListTile(
+                leading: Image.asset('assets/3.png'),
+                title: const Text('Item 3'),
+                trailing: const Icon(Icons.navigate_next),
               ),
             ),
-          ],
-        )
-      ),
+          ),
+        ],
+      )),
     );
   }
 }
