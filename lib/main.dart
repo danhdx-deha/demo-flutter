@@ -1,12 +1,12 @@
 // ignore_for_file: library_private_types_in_public_api
 
-
 import 'package:example_app/views/FadeWidget.dart';
 import 'package:example_app/views/animation.dart';
 import 'package:example_app/views/container.dart';
 import 'package:example_app/views/logo-animation.dart';
+import 'package:example_app/views/orientation.dart';
 import 'package:flutter/material.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 import 'views/PageDrawer.dart';
 
 void main() {
@@ -58,10 +58,9 @@ class _MyHomePageState extends State<MyHomePage> {
         );
       case 1:
         return Container(
-          color: Colors.green,
-          alignment: Alignment.center,
-          child: const FootballTournament()
-        );
+            color: Colors.green,
+            alignment: Alignment.center,
+            child: const FootballTournament());
       case 2:
         return Container(
           color: Colors.blue,
@@ -110,16 +109,17 @@ class Demo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              ElevatedButton(
+    return OrientationBuilder(
+      builder: (context, orientation) {
+        return GridView.count(
+          crossAxisCount: orientation == Orientation.portrait ? 3 : 4,
+          children: <Widget>[
+            ElevatedButton(
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const AnimationDemo()),
+                    MaterialPageRoute(
+                        builder: (context) => const AnimationDemo()),
                   );
                 },
                 child: const Text('Next Page Animation'),
@@ -142,30 +142,24 @@ class Demo extends StatelessWidget {
                 },
                 child: const Text('Next Page Container'),
               ),
-              Container(
-                margin: const EdgeInsets.only(top: 10.0),
-                child: ElevatedButton(
-                    onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const FadeWidget()));
-                  },
-                  child: const Text('Next Page Fade Widget', style: TextStyle(fontFamily: 'RobotoMono'),)
-                )
+              ElevatedButton(
+                onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const FadeWidget()));
+              },
+              child: const Text('Next Page Fade Widget')
               ),
-              Container(
-                margin: const EdgeInsets.only(top: 10.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const PageDrawer())
-                  );
-                },
-                child: const Text('Next Page Drawer')
-                ),
+              ElevatedButton(
+                onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const PageDrawer())
+                );
+              },
+              child: const Text('Next Page Drawer')
               ),
             ],
-          ),
-      ),
+        );
+      }
     );
   }
 }
@@ -177,57 +171,44 @@ class FootballTournament extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: ListView(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: 16.0,
-                  top:16.0,
-                  right:16.0,
-                  bottom: 0.0
-                ),
-              child: Card(
-                child: ListTile(
-                  leading: Image.asset('assets/1.png'),
-                  title: const Text('Item 1'),
-                  trailing: const Icon(Icons.navigate_next),
-                ),
+          child: ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(
+                left: 16.0, top: 16.0, right: 16.0, bottom: 0.0),
+            child: Card(
+              child: ListTile(
+                leading: Image.asset('assets/1.png'),
+                title: const Text('Item 1'),
+                trailing: const Icon(Icons.navigate_next),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: 16.0,
-                  top:16.0,
-                  right:16.0,
-                  bottom: 0.0
-                ),
-              child: Card(
-                child: ListTile(
-                  leading: Image.asset('assets/2.png'),
-                  title: const Text('Item 2r'),
-                  trailing: const Icon(Icons.navigate_next),
-                ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+                left: 16.0, top: 16.0, right: 16.0, bottom: 0.0),
+            child: Card(
+              child: ListTile(
+                leading: Image.asset('assets/2.png'),
+                title: const Text('Item 2r'),
+                trailing: const Icon(Icons.navigate_next),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: 16.0,
-                  top:16.0,
-                  right:16.0,
-                  bottom: 0.0
-                ),
-              child: Card(
-                borderOnForeground: true,
-                child: ListTile(
-                  leading: Image.asset('assets/3.png'),
-                  title: const Text('Item 3'),
-                  trailing: const Icon(Icons.navigate_next),
-                ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+                left: 16.0, top: 16.0, right: 16.0, bottom: 0.0),
+            child: Card(
+              borderOnForeground: true,
+              child: ListTile(
+                leading: Image.asset('assets/3.png'),
+                title: const Text('Item 3'),
+                trailing: const Icon(Icons.navigate_next),
               ),
             ),
-          ],
-        )
-      ),
+          ),
+        ],
+      )),
     );
   }
 }
