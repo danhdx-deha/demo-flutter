@@ -129,37 +129,32 @@ class Demo extends StatelessWidget {
                   );
                 },
                 child: const Text('Next Page Animation'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const LogoAnimation()),
-                );
-              },
-              child: const Text('Next Page Logo Animation'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const ContainerDemo()),
-                );
-              },
-              child: const Text('Next Page Container'),
-            ),
-            ElevatedButton(
+              ),
+              ElevatedButton(
                 onPressed: () {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const FadeWidget()));
+                    context,
+                    MaterialPageRoute(builder: (context) => const LogoAnimation()),
+                  );
                 },
-                child: const Text('Next Page Fade Widget')
-            ),
-            ElevatedButton(
+                child: const Text('Next Page Logo Animation'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ContainerDemo()),
+                  );
+                },
+                child: const Text('Next Page Container'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const FadeWidget()));
+              },
+              child: const Text('Next Page Fade Widget')
+              ),
+              ElevatedButton(
                 onPressed: () {
                 Navigator.push(
                   context,
@@ -167,32 +162,7 @@ class Demo extends StatelessWidget {
                 );
               },
               child: const Text('Next Page Drawer')
-            ),   
-            ElevatedButton(
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content: const Text('Yay! A SnackBar!'),
-                  duration: const Duration(minutes: 1),
-                  width: 180.0,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8.0, // Inner padding for SnackBar content.
-                  ),
-                  behavior: SnackBarBehavior.floating,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0)),
-                  action: SnackBarAction(label: 'label', onPressed: () {}),
-                ));
-              },
-              child: Text('Font size', style: GoogleFonts.timmana())
-            ),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (context) => const OrientationCustom()
-                  ));
-                },
-                child: const Text('Update the UI based on orientation')
-            )
+              ),
             ],
         );
       }
