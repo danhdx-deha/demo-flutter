@@ -142,20 +142,26 @@ class Demo extends StatelessWidget {
                 },
                 child: const Text('Next Page Container'),
               ),
-              ElevatedButton(
-                onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const FadeWidget()));
-              },
-              child: const Text('Next Page Fade Widget')
+              Container(
+                margin: const EdgeInsets.only(top: 10.0),
+                child: ElevatedButton(
+                    onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const FadeWidget()));
+                  },
+                  child: const Text('Next Page Fade Widget', style: TextStyle(fontFamily: 'RobotoMono'),)
+                )
               ),
-              ElevatedButton(
-                onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const PageDrawer())
-                );
-              },
-              child: const Text('Next Page Drawer')
+              Container(
+                margin: const EdgeInsets.only(top: 10.0),
+                child: ElevatedButton(
+                  onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const PageDrawer())
+                  );
+                },
+                child: const Text('Next Page Drawer')
+                ),
               ),
             ],
           ),
