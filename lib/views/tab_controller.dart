@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gif_view/gif_view.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class TabControllerDemo extends StatefulWidget {
   const TabControllerDemo({super.key});
