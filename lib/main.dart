@@ -5,8 +5,8 @@ import 'package:example_app/views/animation.dart';
 import 'package:example_app/views/container.dart';
 import 'package:example_app/views/logo-animation.dart';
 import 'package:example_app/views/orientation.dart';
+import 'package:example_app/views/tab_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'views/PageDrawer.dart';
 
 void main() {
@@ -91,12 +91,12 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.equalizer),
-            label: 'Giải đấu',
+            label: 'Demo2',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.feed_rounded),
             activeIcon: Icon(Icons.feed),
-            label: 'Tin tức',
+            label: 'Demo3',
           ),
         ],
       ),
@@ -162,6 +162,24 @@ class Demo extends StatelessWidget {
                 );
               },
               child: const Text('Next Page Drawer')
+              ),
+              ElevatedButton(
+                onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const OrientationCustom())
+                );
+              },
+              child: const Text('Next Page Orientation')
+              ),
+              ElevatedButton(
+                onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const TabControllerDemo())
+                );
+              },
+              child: const Text('Next Page Tab')
               ),
             ],
         );
