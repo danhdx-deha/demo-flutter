@@ -4,6 +4,7 @@ import 'package:example_app/views/container.dart';
 import 'package:example_app/views/logo-animation.dart';
 import 'package:example_app/views/nest_navigator_flow.dart';
 import 'package:example_app/views/orientation.dart';
+import 'package:example_app/views/photo_filter_carousel.dart';
 import 'package:example_app/views/tab_controller.dart';
 import 'package:flutter/material.dart';
 import 'views/PageDrawer.dart';
@@ -188,6 +189,15 @@ class Demo extends StatelessWidget {
                 );
               },
               child: const Text('Next Page Nest Navigator Flow')
+              ),
+               ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const PhotoFilterCarousel())
+                  );
+                },
+                child: const Text('Next Page Photo Filter Carousel')
               ),
             ],
         );
