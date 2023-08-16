@@ -2,6 +2,7 @@ import 'package:example_app/views/FadeWidget.dart';
 import 'package:example_app/views/animation.dart';
 import 'package:example_app/views/container.dart';
 import 'package:example_app/views/logo-animation.dart';
+import 'package:example_app/views/nest_navigator_flow.dart';
 import 'package:example_app/views/orientation.dart';
 import 'package:example_app/views/tab_controller.dart';
 import 'package:flutter/material.dart';
@@ -178,6 +179,15 @@ class Demo extends StatelessWidget {
                 );
               },
               child: const Text('Next Page Tab')
+              ),
+              ElevatedButton(
+                onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const NestNavigatorFlow())
+                );
+              },
+              child: const Text('Next Page Nest Navigator Flow')
               ),
             ],
         );
