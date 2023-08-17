@@ -5,6 +5,7 @@ import 'package:example_app/views/logo-animation.dart';
 import 'package:example_app/views/nest_navigator_flow.dart';
 import 'package:example_app/views/orientation.dart';
 import 'package:example_app/views/photo_filter_carousel.dart';
+import 'package:example_app/views/scrolling_parallax.dart';
 import 'package:example_app/views/tab_controller.dart';
 import 'package:flutter/material.dart';
 import 'views/PageDrawer.dart';
@@ -120,84 +121,15 @@ class Demo extends StatelessWidget {
         return GridView.count(
           crossAxisCount: orientation == Orientation.portrait ? 3 : 4,
           children: <Widget>[
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const AnimationDemo()),
-                  );
-                },
-                child: const Text('Next Page Animation'),
-              ),
+            for (final btnNextPage in btnNextPages)
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const LogoAnimation()),
+                    MaterialPageRoute(builder: (context) => btnNextPage.className),
                   );
                 },
-                child: const Text('Next Page Logo Animation'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const ContainerDemo()),
-                  );
-                },
-                child: const Text('Next Page Container'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const FadeWidget()));
-              },
-              child: const Text('Next Page Fade Widget')
-              ),
-              ElevatedButton(
-                onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const PageDrawer())
-                );
-              },
-              child: const Text('Next Page Drawer')
-              ),
-              ElevatedButton(
-                onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const OrientationCustom())
-                );
-              },
-              child: const Text('Next Page Orientation')
-              ),
-              ElevatedButton(
-                onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const TabControllerDemo())
-                );
-              },
-              child: const Text('Next Page Tab')
-              ),
-              ElevatedButton(
-                onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const NestNavigatorFlow())
-                );
-              },
-              child: const Text('Next Page Nest Navigator Flow')
-              ),
-               ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const PhotoFilterCarousel())
-                  );
-                },
-                child: const Text('Next Page Photo Filter Carousel')
+                child: Text(btnNextPage.text),
               ),
             ],
         );
@@ -205,6 +137,27 @@ class Demo extends StatelessWidget {
     );
   }
 }
+class BtnNextPage {
+  const BtnNextPage({
+    required this.text,
+    required this.className,
+  });
+
+  final String text;
+  final Widget className;
+}
+const btnNextPages = [
+  BtnNextPage(text: 'Next Page Animation', className: AnimationDemo()),
+  BtnNextPage(text: 'Next Page Logo Animation', className: LogoAnimation()),
+  BtnNextPage(text: 'Next Page Container', className: ContainerDemo()),
+  BtnNextPage(text: 'Next Page Fade Widget', className: FadeWidget()),
+  BtnNextPage(text: 'Next Page Drawer', className: PageDrawer()),
+  BtnNextPage(text: 'Next Page Orientation', className: OrientationCustom()),
+  BtnNextPage(text: 'Next Page Tab', className: TabControllerDemo()),
+  BtnNextPage(text: 'Next Page Nest Navigator Flow', className: NestNavigatorFlow()),
+  BtnNextPage(text: 'Next Page Photo Filter Carousel', className: PhotoFilterCarousel()),
+  BtnNextPage(text: 'Next Page Scrolling Parallax', className: ScrollingParallax())
+];
 
 class FootballTournament extends StatelessWidget {
   const FootballTournament({super.key});
