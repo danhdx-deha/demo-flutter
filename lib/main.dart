@@ -1,6 +1,7 @@
 import 'package:example_app/views/FadeWidget.dart';
 import 'package:example_app/views/animation.dart';
 import 'package:example_app/views/container.dart';
+import 'package:example_app/views/download_button.dart';
 import 'package:example_app/views/logo-animation.dart';
 import 'package:example_app/views/nest_navigator_flow.dart';
 import 'package:example_app/views/orientation.dart';
@@ -155,6 +156,7 @@ const btnNextPages = [
   BtnNextPage(text: 'Next Page Drawer', className: PageDrawer()),
   BtnNextPage(text: 'Next Page Orientation', className: OrientationCustom()),
   BtnNextPage(text: 'Next Page Tab', className: TabControllerDemo()),
+  BtnNextPage(text: 'Next Page DownLoad Button', className: DownLoadButton()),
   BtnNextPage(text: 'Next Page Nest Navigator Flow', className: NestNavigatorFlow()),
   BtnNextPage(text: 'Next Page Photo Filter Carousel', className: PhotoFilterCarousel()),
   BtnNextPage(text: 'Next Page Scrolling Parallax', className: ScrollingParallax()),
