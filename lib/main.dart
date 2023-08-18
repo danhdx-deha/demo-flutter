@@ -121,18 +121,23 @@ class Demo extends StatelessWidget {
     return OrientationBuilder(
       builder: (context, orientation) {
         return GridView.count(
-          crossAxisCount: orientation == Orientation.portrait ? 3 : 4,
+          crossAxisCount: orientation == Orientation.portrait ? 1 : 4,
+          childAspectRatio: 8,
           children: <Widget>[
             for (final btnNextPage in btnNextPages)
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => btnNextPage.className),
-                  );
-                },
-                child: Text(btnNextPage.text),
-              ),
+              Container(
+                height: 50,
+                margin: const EdgeInsets.all(1.0),
+                child:  ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => btnNextPage.className),
+                    );
+                  },
+                  child: Text(btnNextPage.text),
+                ),
+              )
             ],
         );
       }
