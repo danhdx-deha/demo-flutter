@@ -1,6 +1,7 @@
 import 'package:example_app/views/FadeWidget.dart';
 import 'package:example_app/views/animation.dart';
 import 'package:example_app/views/container.dart';
+import 'package:example_app/views/download_button.dart';
 import 'package:example_app/views/logo-animation.dart';
 import 'package:example_app/views/nest_navigator_flow.dart';
 import 'package:example_app/views/orientation.dart';
@@ -120,18 +121,23 @@ class Demo extends StatelessWidget {
     return OrientationBuilder(
       builder: (context, orientation) {
         return GridView.count(
-          crossAxisCount: orientation == Orientation.portrait ? 3 : 4,
+          crossAxisCount: orientation == Orientation.portrait ? 1 : 4,
+          childAspectRatio: 8,
           children: <Widget>[
             for (final btnNextPage in btnNextPages)
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => btnNextPage.className),
-                  );
-                },
-                child: Text(btnNextPage.text),
-              ),
+              Container(
+                height: 50,
+                margin: const EdgeInsets.all(1.0),
+                child:  ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => btnNextPage.className),
+                    );
+                  },
+                  child: Text(btnNextPage.text),
+                ),
+              )
             ],
         );
       }
@@ -155,6 +161,7 @@ const btnNextPages = [
   BtnNextPage(text: 'Next Page Drawer', className: PageDrawer()),
   BtnNextPage(text: 'Next Page Orientation', className: OrientationCustom()),
   BtnNextPage(text: 'Next Page Tab', className: TabControllerDemo()),
+  BtnNextPage(text: 'Next Page DownLoad Button', className: DownLoadButton()),
   BtnNextPage(text: 'Next Page Nest Navigator Flow', className: NestNavigatorFlow()),
   BtnNextPage(text: 'Next Page Photo Filter Carousel', className: PhotoFilterCarousel()),
   BtnNextPage(text: 'Next Page Scrolling Parallax', className: ScrollingParallax()),
