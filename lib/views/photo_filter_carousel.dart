@@ -14,7 +14,7 @@ class _PhotoFilterCarousel extends State {
   final _filters = [
     Colors.white,
     ...List.generate(
-      Colors.primaries.length,
+      3,
       (index) => Colors.primaries[(index * 4) % Colors.primaries.length],
     )
   ];
@@ -57,7 +57,7 @@ class _PhotoFilterCarousel extends State {
       valueListenable: _filterColor,
       builder: (context, color, child) {
         return Image.asset(
-          'assets/vu.png',
+          'assets/4.jpg',
           color: color.withOpacity(0.5),
           colorBlendMode: BlendMode.color,
           fit: BoxFit.cover
@@ -124,7 +124,7 @@ class _FilterSelectorState extends State<FilterSelector> {
   void _onFilterTapped(int index) {
     _controller.animateToPage(
       index,
-      duration: const Duration(milliseconds: 450),
+      duration: const Duration(milliseconds: 2000),
       curve: Curves.ease,
     );
   }

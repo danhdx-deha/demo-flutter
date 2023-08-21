@@ -121,7 +121,7 @@ class Demo extends StatelessWidget {
     return OrientationBuilder(
       builder: (context, orientation) {
         return GridView.count(
-          crossAxisCount: orientation == Orientation.portrait ? 1 : 4,
+          crossAxisCount: orientation == Orientation.portrait ? 1 : 2,
           childAspectRatio: 8,
           children: <Widget>[
             for (final btnNextPage in btnNextPages)
