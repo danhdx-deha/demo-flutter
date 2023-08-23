@@ -14,6 +14,7 @@ import 'package:example_app/views/stagered_menu_animation.dart';
 import 'package:example_app/views/tab_controller.dart';
 import 'package:example_app/views/typing_indicator.dart';
 import 'package:example_app/views/validate.dart';
+import 'package:example_app/views/drag_a_widget.dart';
 import 'package:flutter/material.dart';
 import 'views/PageDrawer.dart';
 
@@ -175,7 +176,8 @@ const btnNextPages = [
   BtnNextPage(text: 'Next Page Gradient Chat Bubbles', className: ChatBubbLess()),
   BtnNextPage(text: 'Next Page Expandable FAB', className: ExampleExpandableFab()),
   BtnNextPage(text: 'Next Page Typing Indicator', className: ExampleIsTyping()),
-  BtnNextPage(text: 'Next Page Staggered Animations ', className: ExampleStaggeredAnimations())
+  BtnNextPage(text: 'Next Page Staggered Animations ', className: ExampleStaggeredAnimations()),
+  BtnNextPage(text: 'Next Page Drag A Widget', className: ExampleDragAndDrop())
 ];
 
 class FootballTournament extends StatelessWidget {
