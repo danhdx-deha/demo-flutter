@@ -1,14 +1,18 @@
 import 'package:example_app/views/FadeWidget.dart';
 import 'package:example_app/views/animation.dart';
+import 'package:example_app/views/chat_bubbles.dart';
 import 'package:example_app/views/container.dart';
 import 'package:example_app/views/download_button.dart';
+import 'package:example_app/views/expandable_fab.dart';
 import 'package:example_app/views/logo-animation.dart';
 import 'package:example_app/views/nest_navigator_flow.dart';
 import 'package:example_app/views/orientation.dart';
 import 'package:example_app/views/photo_filter_carousel.dart';
 import 'package:example_app/views/scrolling_parallax.dart';
 import 'package:example_app/views/shimmer_loading.dart';
+import 'package:example_app/views/stagered_menu_animation.dart';
 import 'package:example_app/views/tab_controller.dart';
+import 'package:example_app/views/typing_indicator.dart';
 import 'package:example_app/views/validate.dart';
 import 'package:flutter/material.dart';
 import 'views/PageDrawer.dart';
@@ -167,7 +171,11 @@ const btnNextPages = [
   BtnNextPage(text: 'Next Page Photo Filter Carousel', className: PhotoFilterCarousel()),
   BtnNextPage(text: 'Next Page Scrolling Parallax', className: ScrollingParallax()),
   BtnNextPage(text: 'Next Page Shimmer Loading', className: ExampleUiLoadingAnimation()),
-  BtnNextPage(text: 'Next Page Validate', className: ValidatePage())
+  BtnNextPage(text: 'Next Page Validate', className: ValidatePage()),
+  BtnNextPage(text: 'Next Page Gradient Chat Bubbles', className: ChatBubbLess()),
+  BtnNextPage(text: 'Next Page Expandable FAB', className: ExampleExpandableFab()),
+  BtnNextPage(text: 'Next Page Typing Indicator', className: ExampleIsTyping()),
+  BtnNextPage(text: 'Next Page Staggered Animations ', className: ExampleStaggeredAnimations())
 ];
 
 class FootballTournament extends StatelessWidget {
