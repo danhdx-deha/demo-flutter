@@ -9,6 +9,7 @@ import 'package:example_app/views/photo_filter_carousel.dart';
 import 'package:example_app/views/scrolling_parallax.dart';
 import 'package:example_app/views/shimmer_loading.dart';
 import 'package:example_app/views/tab_controller.dart';
+import 'package:example_app/views/validate.dart';
 import 'package:flutter/material.dart';
 import 'views/PageDrawer.dart';
 
@@ -166,6 +167,7 @@ const btnNextPages = [
   BtnNextPage(text: 'Next Page Photo Filter Carousel', className: PhotoFilterCarousel()),
   BtnNextPage(text: 'Next Page Scrolling Parallax', className: ScrollingParallax()),
   BtnNextPage(text: 'Next Page Shimmer Loading', className: ExampleUiLoadingAnimation()),
+  BtnNextPage(text: 'Next Page Validate', className: ValidatePage())
 ];
 
 class FootballTournament extends StatelessWidget {
