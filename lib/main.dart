@@ -1,22 +1,24 @@
-import 'package:example_app/views/FadeWidget.dart';
-import 'package:example_app/views/animation.dart';
-import 'package:example_app/views/chat_bubbles.dart';
-import 'package:example_app/views/container.dart';
-import 'package:example_app/views/download_button.dart';
-import 'package:example_app/views/expandable_fab.dart';
-import 'package:example_app/views/logo-animation.dart';
-import 'package:example_app/views/nest_navigator_flow.dart';
-import 'package:example_app/views/orientation.dart';
-import 'package:example_app/views/photo_filter_carousel.dart';
-import 'package:example_app/views/scrolling_parallax.dart';
-import 'package:example_app/views/shimmer_loading.dart';
-import 'package:example_app/views/stagered_menu_animation.dart';
-import 'package:example_app/views/tab_controller.dart';
-import 'package:example_app/views/typing_indicator.dart';
-import 'package:example_app/views/validate.dart';
-import 'package:example_app/views/drag_a_widget.dart';
+import 'package:example_app/views/demo/FadeWidget.dart';
+import 'package:example_app/views/demo/animation.dart';
+import 'package:example_app/views/demo/chat_bubbles.dart';
+import 'package:example_app/views/demo/container.dart';
+import 'package:example_app/views/demo/download_button.dart';
+import 'package:example_app/views/demo/expandable_fab.dart';
+import 'package:example_app/views/demo/grid_view.dart';
+import 'package:example_app/views/demo/logo-animation.dart';
+import 'package:example_app/views/demo/nest_navigator_flow.dart';
+import 'package:example_app/views/demo/orientation.dart';
+import 'package:example_app/views/demo/photo_filter_carousel.dart';
+import 'package:example_app/views/demo/scrolling_parallax.dart';
+import 'package:example_app/views/demo/shimmer_loading.dart';
+import 'package:example_app/views/demo/stagered_menu_animation.dart';
+import 'package:example_app/views/demo/tab_controller.dart';
+import 'package:example_app/views/demo/typing_indicator.dart';
+import 'package:example_app/views/demo/validate.dart';
+import 'package:example_app/views/demo/drag_a_widget.dart';
+import 'package:example_app/views/league/index.dart';
 import 'package:flutter/material.dart';
-import 'views/PageDrawer.dart';
+import 'views/demo/PageDrawer.dart';
 
 void main() {
   runApp(const MyApp());
@@ -55,7 +57,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _currentPageIndex = 0;
+  int _currentPageIndex = 1;
 
   void _onDestinationSelected(int index) {
     setState(() {
@@ -177,57 +179,9 @@ const btnNextPages = [
   BtnNextPage(text: 'Next Page Expandable FAB', className: ExampleExpandableFab()),
   BtnNextPage(text: 'Next Page Typing Indicator', className: ExampleIsTyping()),
   BtnNextPage(text: 'Next Page Staggered Animations ', className: ExampleStaggeredAnimations()),
-  BtnNextPage(text: 'Next Page Drag A Widget', className: ExampleDragAndDrop())
+  BtnNextPage(text: 'Next Page Drag A Widget', className: ExampleDragAndDrop()),
+  BtnNextPage(text: 'Next Page Grid View', className: GridViewDemo()),
 ];
-
-class FootballTournament extends StatelessWidget {
-  const FootballTournament({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-          child: ListView(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(
-                left: 16.0, top: 16.0, right: 16.0, bottom: 0.0),
-            child: Card(
-              child: ListTile(
-                leading: Image.asset('assets/1.png'),
-                title: const Text('Item 1'),
-                trailing: const Icon(Icons.navigate_next),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-                left: 16.0, top: 16.0, right: 16.0, bottom: 0.0),
-            child: Card(
-              child: ListTile(
-                leading: Image.asset('assets/2.png'),
-                title: const Text('Item 2r'),
-                trailing: const Icon(Icons.navigate_next),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-                left: 16.0, top: 16.0, right: 16.0, bottom: 0.0),
-            child: Card(
-              borderOnForeground: true,
-              child: ListTile(
-                leading: Image.asset('assets/3.png'),
-                title: const Text('Item 3'),
-                trailing: const Icon(Icons.navigate_next),
-              ),
-            ),
-          ),
-        ],
-      )),
-    );
-  }
-}
 
 class NewPage extends StatelessWidget {
   const NewPage({super.key});

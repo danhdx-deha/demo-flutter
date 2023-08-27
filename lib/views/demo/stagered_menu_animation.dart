@@ -99,8 +99,9 @@ class _ExampleStaggeredAnimationsState extends State<ExampleStaggeredAnimations>
   }
 
   Widget _buildContent() {
-    // Put page content here.
-    return const SizedBox();
+    return const SizedBox(
+      child: Text('data'),
+    );
   }
 
   Widget _buildDrawer() {
@@ -108,7 +109,7 @@ class _ExampleStaggeredAnimationsState extends State<ExampleStaggeredAnimations>
       animation: _drawerSlideController,
       builder: (context, child) {
         return FractionalTranslation(
-          translation: Offset(1.0 - _drawerSlideController.value, 0.0),
+          translation: Offset(1.0 - _drawerSlideController.value, 0),
           child: _isDrawerClosed() ? const SizedBox() : const Menu(),
         );
       },
