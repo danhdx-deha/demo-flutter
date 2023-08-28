@@ -5,8 +5,8 @@ import '../../models/team.dart';
 
 @immutable
 class TeamWidget extends StatefulWidget {
-  final int id;
-  final String nameLeague;
+  final String? id;
+  final String? nameLeague;
 
 
   const TeamWidget({

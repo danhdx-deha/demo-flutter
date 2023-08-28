@@ -18,7 +18,7 @@ class LeagueApi {
       for (var i in data['response']) {
         temp.add(i['league']);
       }
-      return League.leaguesFromSnapshot(temp);
+      return League.fromList(temp);
     } else {
       // If the server did not return a 200 OK response,
       // then throw an exception.
