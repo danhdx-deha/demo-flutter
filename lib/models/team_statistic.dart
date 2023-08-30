@@ -1,6 +1,6 @@
 import 'package:example_app/models/team.dart';
 
-class Table {
+class TableStatistic {
   int position = 1;
   Team team = Team(id: 1, name: 'name', shortName: 'shortName', tla: 'tla', crest: 'crest');
   int playedGames = 1;
@@ -13,9 +13,9 @@ class Table {
   int goalsAgainst = 0;
   int goalDifference = 0;
 
-  Table({required this.position, required this.team, required this.playedGames, required this.form, required this.won, required this.draw, required this.lost, required this.points, required this.goalsFor, required this.goalsAgainst, required this.goalDifference});
+  TableStatistic({required this.position, required this.team, required this.playedGames, required this.form, required this.won, required this.draw, required this.lost, required this.points, required this.goalsFor, required this.goalsAgainst, required this.goalDifference});
 
-  Table.fromJson(Map<String, dynamic> json) {
+  TableStatistic.fromJson(Map<String, dynamic> json) {
     position = json["position"];
     team = (json["team"] == null ? null : Team.fromJson(json["team"]))!;
     playedGames = json["playedGames"];
@@ -29,25 +29,23 @@ class Table {
     goalDifference = json["goalDifference"];
   }
 
-  static List<Table> fromList(List list) {
-    return list.map((map) => Table.fromJson(map)).toList();
+  static List<TableStatistic> fromList(List list) {
+    return list.map((map) => TableStatistic.fromJson(map)).toList();
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["position"] = position;
-    if(team != null) {
-      _data["team"] = team.toJson();
-    }
-    _data["playedGames"] = playedGames;
-    _data["form"] = form;
-    _data["won"] = won;
-    _data["draw"] = draw;
-    _data["lost"] = lost;
-    _data["points"] = points;
-    _data["goalsFor"] = goalsFor;
-    _data["goalsAgainst"] = goalsAgainst;
-    _data["goalDifference"] = goalDifference;
-    return _data;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["position"] = position;
+    data["team"] = team.toJson();
+    data["playedGames"] = playedGames;
+    data["form"] = form;
+    data["won"] = won;
+    data["draw"] = draw;
+    data["lost"] = lost;
+    data["points"] = points;
+    data["goalsFor"] = goalsFor;
+    data["goalsAgainst"] = goalsAgainst;
+    data["goalDifference"] = goalDifference;
+    return data;
   }
 }

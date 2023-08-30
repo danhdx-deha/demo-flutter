@@ -1,6 +1,6 @@
-import 'package:example_app/models/team_statistic.dart';
 import 'package:example_app/services/standing.dart';
 import 'package:flutter/material.dart';
+import '../../models/team_statistic.dart';
 
 @immutable
 class DetailLeagueWidget extends StatefulWidget {
@@ -18,7 +18,7 @@ class DetailLeagueWidget extends StatefulWidget {
 }
 
 class _DetailLeagueWidgetState extends State<DetailLeagueWidget> {
-  late List<TeamStatistic> teamStatistics = [];
+  late List<TableStatistic> teamStatistics = [];
   bool _isLoading = true;
 
   @override
@@ -182,21 +182,24 @@ class _DetailLeagueWidgetState extends State<DetailLeagueWidget> {
                         .map((e) => DataRow(cells: [
                               DataCell(Center(
                                 child:
-                                    Text(e.intRank ?? '', style: Style().text),
+                                    Text(e.position.toString(), style: Style().text),
                               )),
                               DataCell(Container(
                                 margin: const EdgeInsets.fromLTRB(15, 0, 0, 0),
                                 child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
+                                    Flexible(child:
                                     Image.network(
-                                      e.strTeamBadge ?? '',
+                                      e.team.crest,
                                       width: 15,
+                                    ),
                                     ),
                                     const SizedBox(width: 15),
                                     SizedBox(
                                       width: 70,
                                       child: Text(
-                                        e.strTeam ?? '',
+                                        e.team.name,
                                         style: Style().text,
                                         softWrap: true,
                                         maxLines: 2,
@@ -207,20 +210,20 @@ class _DetailLeagueWidgetState extends State<DetailLeagueWidget> {
                                 ),
                               )),
                               DataCell(
-                                  Text(e.intWin ?? '', style: Style().text)),
+                                  Text(e.won.toString(), style: Style().text)),
                               DataCell(
-                                  Text(e.intDraw ?? '', style: Style().text)),
+                                  Text(e.draw.toString(), style: Style().text)),
                               DataCell(
-                                  Text(e.intLoss ?? '', style: Style().text)),
+                                  Text(e.lost.toString(), style: Style().text)),
                               DataCell(Center(
                                 child: Text(
-                                    (e.intGoalDifference ?? '').contains('-')
-                                        ? (e.intGoalDifference ?? '')
-                                        : '+${e.intGoalDifference ?? ''}',
+                                    (e.goalDifference.toString()).contains('-')
+                                        ? (e.goalDifference.toString())
+                                        : '+${e.goalDifference}',
                                     style: Style().text),
                               )),
                               DataCell(Center(
-                                child: Text(e.intPoints ?? '',
+                                child: Text(e.points.toString(),
                                     style: Style().text),
                               )),
                             ]))

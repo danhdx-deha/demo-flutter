@@ -4,7 +4,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
 class StandingApi {
-  static Future<List<Table>> fetchStanding(idLeague, season) async {
+  static Future<List<TableStatistic>> fetchStanding(idLeague, season) async {
     List temp = [];
     final url = Uri.parse('${dotenv.env['URL_API']!}/v4/competitions/PL/standings?season=2023');
     final response = await http.get(
@@ -16,13 +16,12 @@ class StandingApi {
 
     if (response.statusCode == 200) {
       Map data = jsonDecode(response.body);
-
-      for (var i in data['standings'][0]) {
+      for (var i in data['standings'][0]['table']) {
         temp.add(i);
       }
     } else {
       throw Exception('Failed to load standing');
     }
-    return Table.fromList(temp);
+    return TableStatistic.fromList(temp);
   }
 }

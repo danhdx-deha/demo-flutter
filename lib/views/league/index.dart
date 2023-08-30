@@ -51,7 +51,7 @@ class _FootballTournament extends State<FootballTournament> {
                             MaterialPageRoute(
                                 builder: (context) => DetailLeagueWidget(
                                       id: leagues[index].id ?? 2021,
-                                      nameLeague: leagues[index].name ?? '',
+                                      nameLeague: leagues[index].name ?? 'PL',
                                     )));
                       },
                       leading: leagues[index].emblem == null ? Image.asset('assets/logo-default.png') : CachedNetworkImage(
