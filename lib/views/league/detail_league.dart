@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 @immutable
 class DetailLeagueWidget extends StatefulWidget {
-  final String? id;
+  final int? id;
   final String? nameLeague;
 
   const DetailLeagueWidget({

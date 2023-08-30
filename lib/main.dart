@@ -18,9 +18,11 @@ import 'package:example_app/views/demo/validate.dart';
 import 'package:example_app/views/demo/drag_a_widget.dart';
 import 'package:example_app/views/league/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'views/demo/PageDrawer.dart';
 
-void main() {
+Future<void> main() async {
+  await dotenv.load(fileName: ".env");
   runApp(const MyApp());
 }
 
@@ -102,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.equalizer),
-            label: 'Demo2',
+            label: 'Giải đấu',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.feed_rounded),

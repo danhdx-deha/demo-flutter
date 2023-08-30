@@ -1,93 +1,53 @@
-class TeamStatistic {
-  String? idStanding;
-  String? intRank;
-  String? idTeam;
-  String? strTeam;
-  String? strTeamBadge;
-  String? idLeague;
-  String? strLeague;
-  String? strSeason;
-  String? strForm;
-  String? strDescription;
-  String? intPlayed;
-  String? intWin;
-  String? intLoss;
-  String? intDraw;
-  String? intGoalsFor;
-  String? intGoalsAgainst;
-  String? intGoalDifference;
-  String? intPoints;
-  String? dateUpdated;
+import 'package:example_app/models/team.dart';
 
-  TeamStatistic({
-    this.idStanding,
-    this.intRank,
-    this.idTeam,
-    this.strTeam,
-    this.strTeamBadge,
-    this.idLeague,
-    this.strLeague,
-    this.strSeason,
-    this.strForm,
-    this.strDescription,
-    this.intPlayed,
-    this.intWin,
-    this.intLoss,
-    this.intDraw,
-    this.intGoalsFor,
-    this.intGoalsAgainst,
-    this.intGoalDifference,
-    this.intPoints,
-    this.dateUpdated,
-  });
+class Table {
+  int position = 1;
+  Team team = Team(id: 1, name: 'name', shortName: 'shortName', tla: 'tla', crest: 'crest');
+  int playedGames = 1;
+  String form = '1';
+  int won = 1;
+  int draw = 1;
+  int lost = 1;
+  int points = 0;
+  int goalsFor = 0;
+  int goalsAgainst = 0;
+  int goalDifference = 0;
 
-  TeamStatistic.fromJson(dynamic json) {
-    idStanding = json['idStanding'];
-    intRank = json['intRank'];
-    idTeam = json['idTeam'];
-    strTeam = json['strTeam'];
-    strTeamBadge = json['strTeamBadge'];
-    idLeague = json['idLeague'];
-    strLeague = json['strLeague'];
-    strSeason = json['strSeason'];
-    strForm = json['strForm'];
-    strDescription = json['strDescription'];
-    intPlayed = json['intPlayed'];
-    intWin = json['intWin'];
-    intLoss = json['intLoss'];
-    intDraw = json['intDraw'];
-    intGoalsFor = json['intGoalsFor'];
-    intGoalsAgainst = json['intGoalsAgainst'];
-    intGoalDifference = json['intGoalDifference'];
-    intPoints = json['intPoints'];
-    dateUpdated = json['dateUpdated'];
+  Table({required this.position, required this.team, required this.playedGames, required this.form, required this.won, required this.draw, required this.lost, required this.points, required this.goalsFor, required this.goalsAgainst, required this.goalDifference});
+
+  Table.fromJson(Map<String, dynamic> json) {
+    position = json["position"];
+    team = (json["team"] == null ? null : Team.fromJson(json["team"]))!;
+    playedGames = json["playedGames"];
+    form = json["form"];
+    won = json["won"];
+    draw = json["draw"];
+    lost = json["lost"];
+    points = json["points"];
+    goalsFor = json["goalsFor"];
+    goalsAgainst = json["goalsAgainst"];
+    goalDifference = json["goalDifference"];
+  }
+
+  static List<Table> fromList(List list) {
+    return list.map((map) => Table.fromJson(map)).toList();
   }
 
   Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['idStanding'] = idStanding;
-    map['intRank'] = intRank;
-    map['idTeam'] = idTeam;
-    map['strTeam'] = strTeam;
-    map['strTeamBadge'] = strTeamBadge;
-    map['idLeague'] = idLeague;
-    map['strLeague'] = strLeague;
-    map['strSeason'] = strSeason;
-    map['strForm'] = strForm;
-    map['strDescription'] = strDescription;
-    map['intPlayed'] = intPlayed;
-    map['intWin'] = intWin;
-    map['intLoss'] = intLoss;
-    map['intDraw'] = intDraw;
-    map['intGoalsFor'] = intGoalsFor;
-    map['intGoalsAgainst'] = intGoalsAgainst;
-    map['intGoalDifference'] = intGoalDifference;
-    map['intPoints'] = intPoints;
-    map['dateUpdated'] = dateUpdated;
-    return map;
-  }
-
-  static List<TeamStatistic> fromList(List list) {
-    return list.map((map) => TeamStatistic.fromJson(map)).toList();
+    final Map<String, dynamic> _data = <String, dynamic>{};
+    _data["position"] = position;
+    if(team != null) {
+      _data["team"] = team.toJson();
+    }
+    _data["playedGames"] = playedGames;
+    _data["form"] = form;
+    _data["won"] = won;
+    _data["draw"] = draw;
+    _data["lost"] = lost;
+    _data["points"] = points;
+    _data["goalsFor"] = goalsFor;
+    _data["goalsAgainst"] = goalsAgainst;
+    _data["goalDifference"] = goalDifference;
+    return _data;
   }
 }

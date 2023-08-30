@@ -1,9 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:example_app/models/league.dart';
 import 'package:example_app/services/league_api.dart';
-import 'package:example_app/views/team/index.dart';
 import 'package:flutter/material.dart';
-
 import 'detail_league.dart';
 
 class FootballTournament extends StatefulWidget {
@@ -52,12 +50,12 @@ class _FootballTournament extends State<FootballTournament> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => DetailLeagueWidget(
-                                      id: leagues[index].idLeague ?? '4328',
-                                      nameLeague: leagues[index].strLeague ?? '',
+                                      id: leagues[index].id ?? 2021,
+                                      nameLeague: leagues[index].name ?? '',
                                     )));
                       },
-                      leading: CachedNetworkImage(
-                        imageUrl: leagues[index].strBadge ?? '',
+                      leading: leagues[index].emblem == null ? Image.asset('assets/logo-default.png') : CachedNetworkImage(
+                        imageUrl: leagues[index].emblem ?? '',
                         placeholder: (context, url) =>
                             const CircularProgressIndicator(),
                         errorWidget: (context, url, error) =>
@@ -68,7 +66,7 @@ class _FootballTournament extends State<FootballTournament> {
                         children: <Widget>[
                           Expanded(
                             child: Text(
-                              leagues[index].strLeague ?? '',
+                              leagues[index].name ?? '',
                               softWrap: true,
                               maxLines: 2,
                               overflow: TextOverflow.fade,

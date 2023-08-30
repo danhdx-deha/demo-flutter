@@ -1,46 +1,31 @@
 class Team {
-  int? id;
-  String? name;
-  String? code;
-  String? country;
-  int? founded;
-  bool? national;
-  String? logo;
+  int id = 1;
+  String name = '';
+  String shortName = '';
+  String tla = '';
+  String crest = '';
 
-  Team(
-      {this.id,
-      this.name,
-      this.code,
-      this.country,
-      this.founded,
-      this.national,
-      this.logo});
+  Team({required this.id, required this.name, required this.shortName, required this.tla, required this.crest});
 
   Team.fromJson(Map<String, dynamic> json) {
     id = json["id"];
     name = json["name"];
-    code = json["code"];
-    country = json["country"];
-    founded = json["founded"];
-    national = json["national"];
-    logo = json["logo"];
+    shortName = json["shortName"];
+    tla = json["tla"];
+    crest = json["crest"];
+  }
+
+  static List<Team> fromList(List list) {
+    return list.map((map) => Team.fromJson(map)).toList();
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> _data = <String, dynamic>{};
     _data["id"] = id;
     _data["name"] = name;
-    _data["code"] = code;
-    _data["country"] = country;
-    _data["founded"] = founded;
-    _data["national"] = national;
-    _data["logo"] = logo;
+    _data["shortName"] = shortName;
+    _data["tla"] = tla;
+    _data["crest"] = crest;
     return _data;
-  }
-
-  static List<Team> teamsFromApi(List teams) {
-    return teams.map((data) {
-      return Team.fromJson(data);
-    }).toList();
   }
 }
