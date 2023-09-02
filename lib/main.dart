@@ -22,7 +22,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'views/demo/PageDrawer.dart';
 
 Future<void> main() async {
-  await dotenv.load(fileName: ".env");
+  await dotenv.load(fileName: "lib/.env");
   runApp(const MyApp());
 }
 
@@ -34,9 +34,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.deepPurple,
-        ),
         fontFamily: 'Georgia',
         textTheme: const TextTheme(
           displayLarge: TextStyle(fontSize: 72, fontWeight: FontWeight.bold),

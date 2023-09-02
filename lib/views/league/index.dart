@@ -16,6 +16,7 @@ class FootballTournament extends StatefulWidget {
 class _FootballTournament extends State<FootballTournament> {
   late List<League> leagues;
   bool _isLoading = true;
+
   @override
   void initState() {
     super.initState();
@@ -50,17 +51,20 @@ class _FootballTournament extends State<FootballTournament> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => DetailLeagueWidget(
-                                      id: leagues[index].id ?? 2021,
-                                      nameLeague: leagues[index].name ?? 'PL',
+                                      id: leagues[index].id,
+                                      league: leagues[index],
+                                      codeLeague: leagues[index].code,
                                     )));
                       },
-                      leading: leagues[index].emblem == null ? Image.asset('assets/logo-default.png') : CachedNetworkImage(
-                        imageUrl: leagues[index].emblem ?? '',
-                        placeholder: (context, url) =>
-                            const CircularProgressIndicator(),
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.error),
-                      ),
+                      leading: leagues[index].emblem.contains('svg')
+                          ? Image.asset('assets/logo-default.png')
+                          : CachedNetworkImage(
+                              imageUrl: leagues[index].emblem,
+                              placeholder: (context, url) =>
+                                  const CircularProgressIndicator(),
+                              errorWidget: (context, url, error) =>
+                                  const Icon(Icons.error),
+                            ),
                       title: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[

@@ -4,9 +4,9 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
 class StandingApi {
-  static Future<List<TableStatistic>> fetchStanding(idLeague, season) async {
+  static Future<List<TableStatistic>> fetchStanding(id, codeLeague) async {
     List temp = [];
-    final url = Uri.parse('${dotenv.env['URL_API']!}/v4/competitions/PL/standings?season=2023');
+    final url = Uri.parse('${'${dotenv.env['URL_API']!}/v4/competitions/'+ codeLeague}/standings?season=2023');
     final response = await http.get(
       url,
       headers: {
@@ -20,6 +20,7 @@ class StandingApi {
         temp.add(i);
       }
     } else {
+      return TableStatistic.fromList(temp);
       throw Exception('Failed to load standing');
     }
     return TableStatistic.fromList(temp);

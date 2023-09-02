@@ -18,7 +18,7 @@ class TeamApi {
       for (var i in data['response']) {
         temp.add(i['team']);
       }
-      return Team.teamsFromApi(temp);
+      return Team.fromList(temp);
     } else {
       // If the server did not return a 200 OK response,
       // then throw an exception.

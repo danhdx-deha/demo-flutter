@@ -30,15 +30,15 @@ class _TeamWidgetState extends State<TeamWidget> {
     // TODO: implement initState
     super.initState();
     teams = [
-      Team(
-          id: 79,
-          name: "Lille",
-          code: "LIL",
-          country: "France",
-          founded: 1944,
-          national: false,
-          logo: "https://media-2.api-sports.io/football/teams/79.png"
-      )
+      // Team(
+      //     id: 79,
+      //     name: "Lille",
+      //     code: "LIL",
+      //     country: "France",
+      //     founded: 1944,
+      //     national: false,
+      //     logo: "https://media-2.api-sports.io/football/teams/79.png"
+      // )
     ];
   }
 
