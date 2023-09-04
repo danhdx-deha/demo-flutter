@@ -65,12 +65,23 @@ class PlayerWidgetState extends State<PlayerWidget> {
                     SizedBox(
                       width: 54,
                       height: 54,
-                      child: ClipOval(
-                        child: Image.network(
-                          detail['strCutout'] == '' ? imageDefault : detail['strCutout'],
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+                      child:
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) {
+                              return DetailImage(urlImage: detail['strCutout'] == '' ? imageDefault : detail['strCutout']);
+                            }));
+                          },
+                          child:  ClipOval(
+                            child: Hero(
+                              tag: 'Thumb',
+                              child: Image.network(
+                                detail['strCutout'] == '' ? imageDefault : detail['strCutout'],
+                                fit: BoxFit.cover,
+                              ),
+                            )
+                          ),
+                        )
                     ),
                     const SizedBox(
                       width: 15,
@@ -296,6 +307,34 @@ class HexagonPainter extends CustomPainter {
 
   @override
   bool shouldRebuildSemantics(HexagonPainter oldDelegate) => false;
+}
+
+class DetailImage extends StatelessWidget {
+
+  final String urlImage;
+
+  const DetailImage({super.key, required this.urlImage});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child:
+        GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Center(
+            child:  Hero(
+              tag: 'Thumb',
+              child: Image.network(urlImage),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
 }
 
 class Style {

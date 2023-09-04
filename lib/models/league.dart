@@ -1,6 +1,6 @@
 class League {
   int? id;
-  String? name;
+  String name = '';
   String? code;
   String? type;
   dynamic emblem;
@@ -8,7 +8,7 @@ class League {
   int? numberOfAvailableSeasons;
   String? lastUpdated;
 
-  League({this.id, this.name, this.code, this.type, this.emblem, this.plan, this.numberOfAvailableSeasons, this.lastUpdated});
+  League({this.id, required this.name, this.code, this.type, this.emblem, this.plan, this.numberOfAvailableSeasons, this.lastUpdated});
 
   League.fromJson(Map<String, dynamic> json) {
     id = json["id"];

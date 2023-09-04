@@ -44,6 +44,8 @@ dependencies:
   flutter_social_button: ^1.1.4+1
   url_launcher: ^6.1.14
   string_similarity: ^2.0.0
+  carousel_slider: ^4.2.1
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:

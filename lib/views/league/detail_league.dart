@@ -2,6 +2,7 @@ import 'package:example_app/models/league.dart';
 import 'package:example_app/models/scorer.dart';
 import 'package:example_app/services/standing.dart';
 import 'package:example_app/views/player/detail.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../models/team_statistic.dart';
@@ -58,12 +59,13 @@ class _DetailLeagueWidgetState extends State<DetailLeagueWidget> {
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
-          title: Center(
-              child: Text(widget.league.name ?? '',
-                  style: const TextStyle(fontSize: 20.0))),
-          backgroundColor: Colors.transparent,
+          title: Text(widget.league.name),
+          automaticallyImplyLeading: false,
+          centerTitle: true,
+          forceMaterialTransparency: true,
+          titleTextStyle: const TextStyle(fontSize: 25.0),
         ),
-        backgroundColor: const Color.fromRGBO(34, 34, 59, 100),
+        backgroundColor: Colors.transparent,
         body: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
@@ -75,7 +77,8 @@ class _DetailLeagueWidgetState extends State<DetailLeagueWidget> {
                 Color(0xff54444d),
                 Color(0xff354257),
                 Color(0xff4b4142),
-              ], // Gradient from https://learnui.design/tools/gradient-generator.html
+              ],
+              // Gradient from https://learnui.design/tools/gradient-generator.html
               tileMode: TileMode.mirror,
             ),
           ),
@@ -84,11 +87,19 @@ class _DetailLeagueWidgetState extends State<DetailLeagueWidget> {
               const SizedBox(
                 height: 12,
               ),
-              _isLoading ? CircularProgressIndicator() : _blockTable(),
+              _isLoading
+                  ? const Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : _blockTable(),
               const SizedBox(
                 height: 20,
               ),
-              _isLoadingPlayer ? CircularProgressIndicator() : _blockGoalScore(),
+              _isLoadingPlayer
+                  ? const Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : _blockGoalScore(),
               const SizedBox(
                 height: 50,
               ),
@@ -194,7 +205,7 @@ class _DetailLeagueWidgetState extends State<DetailLeagueWidget> {
               Color(0xff54444d),
               Color(0xff354257),
               Color(0xff4b4142),
-            ], // Gradient from https://learnui.design/tools/gradient-generator.html
+            ],
             tileMode: TileMode.mirror,
           ),
           borderRadius: BorderRadius.all(
@@ -301,7 +312,7 @@ class _DetailLeagueWidgetState extends State<DetailLeagueWidget> {
     return <DataColumn>[
       DataColumn(
           label: SizedBox(
-              width: width * .05,
+              width: width * .04,
               child: Center(
                 child: Text(
                   '#',
@@ -310,7 +321,7 @@ class _DetailLeagueWidgetState extends State<DetailLeagueWidget> {
               ))),
       DataColumn(
           label: Container(
-        width: width * .35,
+        width: width * .4,
         margin: const EdgeInsets.fromLTRB(15, 0, 0, 0),
         child: Text(
           'Club',
@@ -322,7 +333,7 @@ class _DetailLeagueWidgetState extends State<DetailLeagueWidget> {
       )),
       DataColumn(
           label: SizedBox(
-        width: width * .1,
+        width: width * .08,
         child: Text(
           'W',
           style: Style().textLabel,
@@ -333,7 +344,7 @@ class _DetailLeagueWidgetState extends State<DetailLeagueWidget> {
       )),
       DataColumn(
           label: SizedBox(
-        width: width * .1,
+        width: width * .08,
         child: Text(
           'D',
           style: Style().textLabel,
@@ -344,7 +355,7 @@ class _DetailLeagueWidgetState extends State<DetailLeagueWidget> {
       )),
       DataColumn(
           label: SizedBox(
-        width: width * .1,
+        width: width * .08,
         child: Text(
           'L',
           style: Style().textLabel,
@@ -355,7 +366,7 @@ class _DetailLeagueWidgetState extends State<DetailLeagueWidget> {
       )),
       DataColumn(
           label: SizedBox(
-        width: width * .1,
+        width: width * .08,
         child: Center(
           child: Text(
             '+/-',
@@ -368,7 +379,7 @@ class _DetailLeagueWidgetState extends State<DetailLeagueWidget> {
       )),
       DataColumn(
           label: SizedBox(
-        width: width * .1,
+        width: width * .08,
         child: Center(
           child: Text(
             'P',

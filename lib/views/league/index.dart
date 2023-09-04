@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:example_app/models/league.dart';
 import 'package:example_app/services/league_api.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'detail_league.dart';
 
@@ -49,7 +50,7 @@ class _FootballTournament extends State<FootballTournament> {
                       onTap: () {
                         Navigator.push(
                             context,
-                            MaterialPageRoute(
+                            CupertinoPageRoute(
                                 builder: (context) => DetailLeagueWidget(
                                       id: leagues[index].id,
                                       league: leagues[index],

@@ -1,7 +1,9 @@
 import 'package:example_app/views/demo/FadeWidget.dart';
+import 'package:example_app/views/demo/across_screen.dart';
 import 'package:example_app/views/demo/animation.dart';
 import 'package:example_app/views/demo/chat_bubbles.dart';
 import 'package:example_app/views/demo/container.dart';
+import 'package:example_app/views/demo/different_type_of_item.dart';
 import 'package:example_app/views/demo/download_button.dart';
 import 'package:example_app/views/demo/expandable_fab.dart';
 import 'package:example_app/views/demo/grid_view.dart';
@@ -9,6 +11,7 @@ import 'package:example_app/views/demo/logo-animation.dart';
 import 'package:example_app/views/demo/nest_navigator_flow.dart';
 import 'package:example_app/views/demo/orientation.dart';
 import 'package:example_app/views/demo/photo_filter_carousel.dart';
+import 'package:example_app/views/demo/place_floating_app_bar.dart';
 import 'package:example_app/views/demo/scrolling_parallax.dart';
 import 'package:example_app/views/demo/shimmer_loading.dart';
 import 'package:example_app/views/demo/stagered_menu_animation.dart';
@@ -16,13 +19,16 @@ import 'package:example_app/views/demo/tab_controller.dart';
 import 'package:example_app/views/demo/typing_indicator.dart';
 import 'package:example_app/views/demo/validate.dart';
 import 'package:example_app/views/demo/drag_a_widget.dart';
+import 'package:example_app/views/home.dart';
 import 'package:example_app/views/league/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'views/demo/PageDrawer.dart';
 
 Future<void> main() async {
   await dotenv.load(fileName: "lib/.env");
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [SystemUiOverlay.bottom]);
   runApp(const MyApp());
 }
 
@@ -56,7 +62,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _currentPageIndex = 1;
+  int _currentPageIndex = 0;
 
   void _onDestinationSelected(int index) {
     setState(() {
@@ -68,10 +74,9 @@ class _MyHomePageState extends State<MyHomePage> {
     switch (index) {
       case 0:
         return Container(
-          color: Colors.red,
-          alignment: Alignment.center,
-          child: const Demo(),
-        );
+            color: Colors.green,
+            alignment: Alignment.center,
+            child: const Home());
       case 1:
         return Container(
             color: Colors.green,
@@ -81,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
         return Container(
           color: Colors.blue,
           alignment: Alignment.center,
-          child: const NewPage(),
+          child: const Demo(),
         );
       default:
         return Container();
@@ -96,17 +101,18 @@ class _MyHomePageState extends State<MyHomePage> {
         currentIndex: _currentPageIndex,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.chrome_reader_mode_outlined),
-            label: 'Demo',
+            icon: Icon(Icons.home),
+            label: '',
+            activeIcon: Icon(Icons.home, size: 30)
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.equalizer),
-            label: 'Giải đấu',
+            label: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.feed_rounded),
-            activeIcon: Icon(Icons.feed),
-            label: 'Demo3',
+            activeIcon: Icon(Icons.feed, size: 30),
+            label: '',
           ),
         ],
       ),
@@ -180,17 +186,7 @@ const btnNextPages = [
   BtnNextPage(text: 'Next Page Staggered Animations ', className: ExampleStaggeredAnimations()),
   BtnNextPage(text: 'Next Page Drag A Widget', className: ExampleDragAndDrop()),
   BtnNextPage(text: 'Next Page Grid View', className: GridViewDemo()),
+  BtnNextPage(text: 'Next Page Different Types Of Items', className: DifferentTypeOfItem()),
+  BtnNextPage(text: 'Place a floating app bar above a list', className: PlaceFloatingAppBar()),
+  BtnNextPage(text: 'Animate a widget across screens', className: AcrossScreenWidget()),
 ];
-
-class NewPage extends StatelessWidget {
-  const NewPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('NewPage'),
-      ),
-    );
-  }
-}
