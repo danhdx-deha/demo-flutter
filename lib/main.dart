@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:example_app/views/demo/FadeWidget.dart';
 import 'package:example_app/views/demo/across_screen.dart';
 import 'package:example_app/views/demo/animation.dart';
@@ -25,11 +27,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'views/demo/PageDrawer.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 Future<void> main() async {
   await dotenv.load(fileName: "lib/.env");
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [SystemUiOverlay.bottom]);
-  runApp(const MyApp());
+  runZonedGuarded(() async {
+    await SentryFlutter.init(
+          (options) {
+        options.dsn = 'https://47cc562e97785dd8513bd66a605db032@o4505833020129280.ingest.sentry.io/4505833023602688';
+      },
+    );
+
+    runApp(const MyApp());
+  }, (exception, stackTrace) async {
+    await Sentry.captureException(exception, stackTrace: stackTrace);
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -128,7 +141,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
 class Demo extends StatelessWidget {
   const Demo({super.key});
-
+  Future<void> tryCatch() async {
+    try {
+      throw StateError('try catch');
+    } catch (error, stackTrace) {
+      await Sentry.captureException(error, stackTrace: stackTrace.toString());
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return OrientationBuilder(
@@ -137,6 +156,11 @@ class Demo extends StatelessWidget {
           crossAxisCount: orientation == Orientation.portrait ? 1 : 2,
           childAspectRatio: 8,
           children: <Widget>[
+            ElevatedButton(
+              onPressed: () => tryCatch(),
+              key: const Key('dart_try_catch'),
+              child: const Text('Dart: try catch'),
+            ),
             for (final btnNextPage in btnNextPages)
               Container(
                 height: 50,
