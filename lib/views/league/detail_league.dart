@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../models/team_statistic.dart';
 import '../../services/scorer_api.dart';
+import 'package:sentry/sentry.dart';
 
 @immutable
 class DetailLeagueWidget extends StatefulWidget {

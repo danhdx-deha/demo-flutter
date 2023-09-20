@@ -3,6 +3,8 @@ import 'package:example_app/views/demo/across_screen.dart';
 import 'package:example_app/views/demo/animation.dart';
 import 'package:example_app/views/demo/chat_bubbles.dart';
 import 'package:example_app/views/demo/container.dart';
+import 'package:example_app/views/demo/delete_api.dart';
+import 'package:example_app/views/demo/demo-api.dart';
 import 'package:example_app/views/demo/different_type_of_item.dart';
 import 'package:example_app/views/demo/download_button.dart';
 import 'package:example_app/views/demo/expandable_fab.dart';
@@ -17,6 +19,7 @@ import 'package:example_app/views/demo/shimmer_loading.dart';
 import 'package:example_app/views/demo/stagered_menu_animation.dart';
 import 'package:example_app/views/demo/tab_controller.dart';
 import 'package:example_app/views/demo/typing_indicator.dart';
+import 'package:example_app/views/demo/update_api.dart';
 import 'package:example_app/views/demo/validate.dart';
 import 'package:example_app/views/demo/drag_a_widget.dart';
 import 'package:example_app/views/home.dart';
@@ -24,9 +27,18 @@ import 'package:example_app/views/league/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:go_router/go_router.dart';
 import 'views/demo/PageDrawer.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 Future<void> main() async {
+  // await SentryFlutter.init(
+  //       (options) {
+  //     options.dsn = 'https://47cc562e97785dd8513bd66a605db032@o4505833020129280.ingest.sentry.io/4505833023602688';
+  //     options.tracesSampleRate = 1.0;
+  //   },
+  //   appRunner: () => runApp(const MyApp()),
+  // );
   await dotenv.load(fileName: "lib/.env");
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [SystemUiOverlay.bottom]);
   runApp(const MyApp());
@@ -47,6 +59,10 @@ class MyApp extends StatelessWidget {
           bodyMedium: TextStyle(fontSize: 14, fontFamily: 'Hind'),
         ),
       ),
+      routes: {
+        '/home': (context) => const MyHomePage(title: 'Giải đấu'),
+        '/statistic': (context) => const FootballTournament(),
+      },
       home: const MyHomePage(title: 'Giải đấu'),
     );
   }
@@ -58,6 +74,7 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
+  // ignore: library_private_types_in_public_api
   _MyHomePageState createState() => _MyHomePageState();
 }
 
@@ -118,7 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Theme.of(context).colorScheme.primaryVariant,
+        backgroundColor: const Color(0xff222232),
         title: Text(widget.title),
       ),
       body: _buildPage(_currentPageIndex),
@@ -167,6 +184,9 @@ class BtnNextPage {
   final Widget className;
 }
 const btnNextPages = [
+  BtnNextPage(text: 'Next Page Create Api', className: DemoApi()),
+  BtnNextPage(text: 'Next Page Update Api', className: UpdateApi()),
+  BtnNextPage(text: 'Next Page Delete Api', className: DeleteApi()),
   BtnNextPage(text: 'Next Page Animation', className: AnimationDemo()),
   BtnNextPage(text: 'Next Page Logo Animation', className: LogoAnimation()),
   BtnNextPage(text: 'Next Page Container', className: ContainerDemo()),

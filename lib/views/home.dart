@@ -121,7 +121,7 @@ class _HomeState extends State<Home> {
                                     width: 40,
                                   ),
                             Text(
-                              matchesScheduled[index].homeTeam.shortName ?? '',
+                              matchesScheduled[index].awayTeam.shortName ?? '',
                               style:
                                   const TextStyle(color: Colors.white, fontSize: 12),
                             ),
