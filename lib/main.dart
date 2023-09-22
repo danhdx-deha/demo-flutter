@@ -7,6 +7,7 @@ import 'package:example_app/views/demo/chat_bubbles.dart';
 import 'package:example_app/views/demo/container.dart';
 import 'package:example_app/views/demo/delete_api.dart';
 import 'package:example_app/views/demo/demo-api.dart';
+import 'package:example_app/views/demo/demo_sqlite.dart';
 import 'package:example_app/views/demo/different_type_of_item.dart';
 import 'package:example_app/views/demo/download_button.dart';
 import 'package:example_app/views/demo/expandable_fab.dart';
@@ -24,6 +25,7 @@ import 'package:example_app/views/demo/typing_indicator.dart';
 import 'package:example_app/views/demo/update_api.dart';
 import 'package:example_app/views/demo/validate.dart';
 import 'package:example_app/views/demo/drag_a_widget.dart';
+import 'package:example_app/views/demo/web_socket.dart';
 import 'package:example_app/views/home.dart';
 import 'package:example_app/views/league/index.dart';
 import 'package:flutter/material.dart';
@@ -207,6 +209,8 @@ class BtnNextPage {
   final Widget className;
 }
 const btnNextPages = [
+  BtnNextPage(text: 'Next Page SQLite', className: DemoSqlite()),
+  BtnNextPage(text: 'Next Page Web Socket', className: WebSocketChannelDemo(title: 'Web socket',)),
   BtnNextPage(text: 'Next Page Create Api', className: DemoApi()),
   BtnNextPage(text: 'Next Page Update Api', className: UpdateApi()),
   BtnNextPage(text: 'Next Page Delete Api', className: DeleteApi()),
