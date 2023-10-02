@@ -12,15 +12,19 @@ import 'package:example_app/views/demo/different_type_of_item.dart';
 import 'package:example_app/views/demo/download_button.dart';
 import 'package:example_app/views/demo/expandable_fab.dart';
 import 'package:example_app/views/demo/grid_view.dart';
+import 'package:example_app/views/demo/handle_file.dart';
 import 'package:example_app/views/demo/logo-animation.dart';
 import 'package:example_app/views/demo/nest_navigator_flow.dart';
 import 'package:example_app/views/demo/orientation.dart';
 import 'package:example_app/views/demo/photo_filter_carousel.dart';
 import 'package:example_app/views/demo/place_floating_app_bar.dart';
+import 'package:example_app/views/demo/play_pause_video.dart';
 import 'package:example_app/views/demo/scrolling_parallax.dart';
 import 'package:example_app/views/demo/shimmer_loading.dart';
 import 'package:example_app/views/demo/stagered_menu_animation.dart';
+import 'package:example_app/views/demo/store_key.dart';
 import 'package:example_app/views/demo/tab_controller.dart';
+import 'package:example_app/views/demo/take_picture.dart';
 import 'package:example_app/views/demo/typing_indicator.dart';
 import 'package:example_app/views/demo/update_api.dart';
 import 'package:example_app/views/demo/validate.dart';
@@ -34,6 +38,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:go_router/go_router.dart';
 import 'views/demo/PageDrawer.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:camera/camera.dart';
 
 Future<void> main() async {
   // await SentryFlutter.init(
@@ -46,11 +51,11 @@ Future<void> main() async {
   await dotenv.load(fileName: "lib/.env");
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [SystemUiOverlay.bottom]);
   runZonedGuarded(() async {
-    await SentryFlutter.init(
-          (options) {
-        options.dsn = 'https://47cc562e97785dd8513bd66a605db032@o4505833020129280.ingest.sentry.io/4505833023602688';
-      },
-    );
+    // await SentryFlutter.init(
+    //       (options) {
+    //     options.dsn = 'https://47cc562e97785dd8513bd66a605db032@o4505833020129280.ingest.sentry.io/4505833023602688';
+    //   },
+    // );
 
     runApp(const MyApp());
   }, (exception, stackTrace) async {
@@ -161,6 +166,8 @@ class Demo extends StatelessWidget {
   const Demo({super.key});
   Future<void> tryCatch() async {
     try {
+      final cameras = await availableCameras();
+      final firstCamera = cameras.first;
       throw StateError('try catch');
     } catch (error, stackTrace) {
       await Sentry.captureException(error, stackTrace: stackTrace.toString());
@@ -178,6 +185,32 @@ class Demo extends StatelessWidget {
               onPressed: () => tryCatch(),
               key: const Key('dart_try_catch'),
               child: const Text('Dart: try catch'),
+            ),
+            Container(
+              height: 50,
+              margin: const EdgeInsets.all(1.0),
+              child:  ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const TakePictureScreen()),
+                  );
+                },
+                child: const Text('Next Page Take Picture'),
+              ),
+            ),
+            Container(
+              height: 50,
+              margin: const EdgeInsets.all(1.0),
+              child:  ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HandleFile(storage: CounterStorage())),
+                  );
+                },
+                child: const Text('Next Page Handle File'),
+              ),
             ),
             for (final btnNextPage in btnNextPages)
               Container(
@@ -209,6 +242,8 @@ class BtnNextPage {
   final Widget className;
 }
 const btnNextPages = [
+  BtnNextPage(text: 'Next Page Video Player App', className: VideoPlayerApp()),
+  BtnNextPage(text: 'Next Page Store Key', className: StoreKey()),
   BtnNextPage(text: 'Next Page SQLite', className: DemoSqlite()),
   BtnNextPage(text: 'Next Page Web Socket', className: WebSocketChannelDemo(title: 'Web socket',)),
   BtnNextPage(text: 'Next Page Create Api', className: DemoApi()),
